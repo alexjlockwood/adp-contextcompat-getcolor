@@ -1,0 +1,19 @@
+<resources>
+
+    <string name="app_name">ContextCompat</string>
+
+    <string name="example1">1. <code>Resources#getColor()</code> (deprecated)</string>
+    <string name="example2">2. <code>Resources#getColorStateList()</code> (deprecated)</string>
+    <string name="example3">3. ContextCompat#getColor()</string>
+    <string name="example4">4. ContextCompat#getColorStateList()</string>
+    <string name="example5">5. ContextCompat#getColorStateList() (w/ custom theme)</string>
+    <string name="example6">6. Color created programatically</string>
+    <string name="example7">7. ColorStateList created programatically</string>
+    <string name="example8">8. ColorStateList created programatically (w/ custom theme)</string>
+
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+
+    <string name="api_version_format">API version: %d</string>
+
+</resources>

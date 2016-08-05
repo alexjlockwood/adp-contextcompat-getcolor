@@ -1,0 +1,14 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/quantum_vanillared500</item>
+        <item name="colorPrimaryDark">@color/quantum_vanillared700</item>
+        <item name="colorAccent">@color/quantum_googgreen500</item>
+    </style>
+
+    <style name="CustomButtonTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorPrimary">@color/quantum_brown500</item>
+        <item name="colorAccent">@color/quantum_yellow900</item>
+    </style>
+
+</resources>
