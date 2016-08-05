@@ -2,7 +2,6 @@ package com.example.alockwood.contextcompat;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,62 +20,45 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    //noinspection ConstantConditions
     getSupportActionBar().setSubtitle(
         getString(R.string.api_version_format, Build.VERSION.SDK_INT));
 
-    final Resources res = getResources();
-
     // (1)
-    int deprecatedTextColor = res.getColor(R.color.button_text_csl);
-    initButtons(R.id.example1, deprecatedTextColor);
+    int deprecatedTextColor = getResources().getColor(R.color.button_text_csl);
+    initButtonTextColors(R.id.example1, deprecatedTextColor);
 
     // (2)
-    ColorStateList deprecatedTextCsl = res.getColorStateList(R.color.button_text_csl);
-    initButtons(R.id.example2, deprecatedTextCsl);
+    ColorStateList deprecatedTextCsl = getResources().getColorStateList(R.color.button_text_csl);
+    initButtonTextColors(R.id.example2, deprecatedTextCsl);
 
     // (3)
     int textColorXml = ContextCompat.getColor(this, R.color.button_text_csl);
-    initButtons(R.id.example3, textColorXml);
+    initButtonTextColors(R.id.example3, textColorXml);
 
     // (4)
     ColorStateList textCslXml = ContextCompat.getColorStateList(this, R.color.button_text_csl);
-    initButtons(R.id.example4, textCslXml);
+    initButtonTextColors(R.id.example4, textCslXml);
 
     // (5)
     ViewGroup container5 = (ViewGroup) findViewById(R.id.example5);
     ColorStateList textCslXmlWithCustomTheme =
         ContextCompat.getColorStateList(container5.getContext(), R.color.button_text_csl);
-    initButtons(R.id.example5, textCslXmlWithCustomTheme);
+    initButtonTextColors(R.id.example5, textCslXmlWithCustomTheme);
 
     // (6)
     int textColorJava = getThemeAttrColor(this, R.attr.colorPrimary);
-    initButtons(R.id.example6, textColorJava);
+    initButtonTextColors(R.id.example6, textColorJava);
 
     // (7)
     ColorStateList textCslJava = createColorStateList(this);
-    initButtons(R.id.example7, textCslJava);
+    initButtonTextColors(R.id.example7, textCslJava);
 
     // (8)
     ViewGroup container8 = (ViewGroup) findViewById(R.id.example8);
     ColorStateList textCslJavaWithCustomTheme = createColorStateList(container8.getContext());
-    initButtons(R.id.example8, textCslJavaWithCustomTheme);
-  }
-
-  private void initButtons(@IdRes int containerResId, @ColorInt int textColor) {
-    final ViewGroup container = (ViewGroup) findViewById(containerResId);
-    for (int i = 0, count = container.getChildCount(); i < count; i++) {
-      ((Button) container.getChildAt(i)).setTextColor(textColor);
-    }
-  }
-
-  private void initButtons(@IdRes int containerResId, ColorStateList textColorStateList) {
-    initButtons((ViewGroup) findViewById(containerResId), textColorStateList);
-  }
-
-  private void initButtons(ViewGroup container, ColorStateList textColorStateList) {
-    for (int i = 0, count = container.getChildCount(); i < count; i++) {
-      ((Button) container.getChildAt(i)).setTextColor(textColorStateList);
-    }
+    initButtonTextColors(R.id.example8, textCslJavaWithCustomTheme);
   }
 
   @ColorInt
@@ -99,5 +81,22 @@ public class MainActivity extends AppCompatActivity {
             getThemeAttrColor(context, R.attr.colorAccent),  // Disabled state.
             getThemeAttrColor(context, R.attr.colorPrimary), // Enabled state.
         });
+  }
+
+  private void initButtonTextColors(@IdRes int containerResId, @ColorInt int textColor) {
+    final ViewGroup container = (ViewGroup) findViewById(containerResId);
+    for (int i = 0, count = container.getChildCount(); i < count; i++) {
+      ((Button) container.getChildAt(i)).setTextColor(textColor);
+    }
+  }
+
+  private void initButtonTextColors(@IdRes int containerResId, ColorStateList textCsl) {
+    initButtonTextColors((ViewGroup) findViewById(containerResId), textCsl);
+  }
+
+  private void initButtonTextColors(ViewGroup container, ColorStateList textCsl) {
+    for (int i = 0, count = container.getChildCount(); i < count; i++) {
+      ((Button) container.getChildAt(i)).setTextColor(textCsl);
+    }
   }
 }
