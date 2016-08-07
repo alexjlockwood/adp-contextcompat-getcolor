@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.content.res.AppCompatResources;
 import android.util.StateSet;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,17 +34,17 @@ public class MainActivity extends AppCompatActivity {
     initButtonTextColors(R.id.example2, deprecatedTextCsl);
 
     // (3)
-    int textColorXml = ContextCompat.getColor(this, R.color.button_text_csl);
+    int textColorXml = AppCompatResources.getColorStateList(this, R.color.button_text_csl).getDefaultColor();
     initButtonTextColors(R.id.example3, textColorXml);
 
     // (4)
-    ColorStateList textCslXml = ContextCompat.getColorStateList(this, R.color.button_text_csl);
+    ColorStateList textCslXml = AppCompatResources.getColorStateList(this, R.color.button_text_csl);
     initButtonTextColors(R.id.example4, textCslXml);
 
     // (5)
     ViewGroup container5 = (ViewGroup) findViewById(R.id.example5);
     ColorStateList textCslXmlWithCustomTheme =
-        ContextCompat.getColorStateList(container5.getContext(), R.color.button_text_csl);
+        AppCompatResources.getColorStateList(container5.getContext(), R.color.button_text_csl);
     initButtonTextColors(R.id.example5, textCslXmlWithCustomTheme);
 
     // (6)
